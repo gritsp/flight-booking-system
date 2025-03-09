@@ -1,0 +1,60 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model flights {
+  id          String @id @default(uuid())
+  origin      String
+  destination String
+  departure   BigInt
+  config_id   String @default(uuid())
+  created_at  BigInt
+  updated_at  BigInt
+}
+
+model flights_config {
+  id                 String @id @default(uuid())
+  early_rate         Int
+  normal_rate        Int
+  late_rate          Int
+  dynamic_price_rate Int
+  frequent_flyer     Int
+  created_at         BigInt
+  updated_at         BigInt
+}
+
+model passengers {
+  id         String @id @default(uuid())
+  first_name String
+  last_name  String
+  created_at BigInt
+  updated_at BigInt
+}
+
+model seats {
+  id              String @id @default(uuid())
+  flight_id       String @default(uuid())
+  type            String
+  price           Int
+  total_available Int
+  total_booked    Int
+  created_at      BigInt
+  updated_at      BigInt
+}
+
+model tickets {
+  id           String @id @default(uuid())
+  flight_id    String @default(uuid())
+  seat_type    String
+  passenger_id String @default(uuid())
+  seat_row     Int
+  seat_column  Int
+  price        Int
+  created_at   BigInt
+  updated_at   BigInt
+}
