@@ -1,4 +1,4 @@
-import database from "@/app/lib/database";
+import database from "@/lib/database";
 
 export async function GET() {
   return Response.json({
