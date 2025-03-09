@@ -8,53 +8,53 @@ datasource db {
 }
 
 model flights {
-  id          String @id @default(uuid())
-  origin      String
-  destination String
-  departure   BigInt
-  config_id   String @default(uuid())
-  created_at  BigInt
-  updated_at  BigInt
+  id          String   @id @default(uuid()) @db.Uuid
+  origin      String   @db.VarChar(10)
+  destination String   @db.VarChar(10)
+  departure   DateTime @db.Timestamp
+  config_id   String   @default(uuid()) @db.Uuid
+  created_at  DateTime @default(now()) @db.Timestamp
+  updated_at  DateTime @updatedAt @db.Timestamp
 }
 
 model flights_config {
-  id                 String @id @default(uuid())
+  id                 String   @id @default(uuid()) @db.Uuid
   early_rate         Int
   normal_rate        Int
   late_rate          Int
   dynamic_price_rate Int
   frequent_flyer     Int
-  created_at         BigInt
-  updated_at         BigInt
+  created_at         DateTime @default(now()) @db.Timestamp
+  updated_at         DateTime @updatedAt @db.Timestamp
 }
 
 model passengers {
-  id         String @id @default(uuid())
+  id         String   @id @default(uuid()) @db.Uuid
   first_name String
   last_name  String
-  created_at BigInt
-  updated_at BigInt
+  created_at DateTime @default(now()) @db.Timestamp
+  updated_at DateTime @updatedAt @db.Timestamp
 }
 
 model seats {
-  id              String @id @default(uuid())
-  flight_id       String @default(uuid())
+  id              String   @id @default(uuid()) @db.Uuid
+  flight_id       String   @default(uuid()) @db.Uuid
   type            String
   price           Int
   total_available Int
   total_booked    Int
-  created_at      BigInt
-  updated_at      BigInt
+  created_at      DateTime @default(now()) @db.Timestamp
+  updated_at      DateTime @updatedAt @db.Timestamp
 }
 
 model tickets {
-  id           String @id @default(uuid())
-  flight_id    String @default(uuid())
+  id           String   @id @default(uuid()) @db.Uuid
+  flight_id    String   @default(uuid()) @db.Uuid
   seat_type    String
-  passenger_id String @default(uuid())
+  passenger_id String   @default(uuid()) @db.Uuid
   seat_row     Int
   seat_column  Int
   price        Int
-  created_at   BigInt
-  updated_at   BigInt
+  created_at   DateTime @default(now()) @db.Timestamp
+  updated_at   DateTime @updatedAt @db.Timestamp
 }

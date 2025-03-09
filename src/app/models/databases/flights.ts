@@ -1,11 +1,9 @@
-import { UUID } from "crypto";
-
 export interface Flights {
-  id: UUID;
+  id: string;
   origin: string;
   destination: string;
-  departure: string;
-  config_id: UUID;
-  created_at: number;
-  updated_at: number;
+  departure: Date;
+  config_id: string;
+  created_at: Date;
+  updated_at: Date;
 }
