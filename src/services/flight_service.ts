@@ -18,6 +18,10 @@ export default class FlightServiceImpl implements FlightService {
   }
 
   async getFlightById(id: string): Promise<Flights> {
+    if (!id) {
+      return null as unknown as Flights;
+    }
+    console.log("id", id);
     const result = await this.flightRepository.findUnique({
       where: { id: id },
     });
