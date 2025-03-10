@@ -1,6 +1,6 @@
 import FlightService from "@/services/flight_service";
 import database from "@/lib/database"; // Adjust to your Prisma client path
-import { randomUUID, verify } from "crypto";
+import { randomUUID } from "crypto";
 import { Flights } from "@/app/models/databases/flights";
 import { FlightsConfig } from "@/app/models/databases/flights_config";
 
